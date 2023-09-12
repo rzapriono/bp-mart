@@ -99,7 +99,7 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
       }
     return render(request, "main.html", context)   
    ```
-   Variabel context berisi data nama aplikasi, nama, dan kelas yang akan ditampilkan pada templates       `main.html`
+   Variabel context berisi data nama aplikasi, nama, dan kelas yang akan ditampilkan pada templates `main.html`
 3. Isi `main.html` untuk menampilkan data-data tersebut
    ```html
    <h1>Stok Produk bp-mart</h1>
@@ -153,7 +153,7 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
 
 # Virtual Environment
 ## Mengapa menggunakan virtual environment?
-Virtual environment adalah suatu lingkungan kerja terisolasi pada komputer kita. Virtual environment berguna untuk mengisolasi package serta dependencies dari aplikasi sehingga tidak bertabrakan/konflik dengan versi lain yang ada karena berbagai proyek yang kita kerjakan dapat membutuhkan/memiliki pacakages dan dependencies yang berbeda-beda.
+Virtual environment adalah suatu lingkungan kerja terisolasi pada komputer kita. Virtual environment berguna untuk mengisolasi package serta dependencies dari aplikasi sehingga tidak bertabrakan/konflik dengan versi lain yang ada karena berbagai proyek yang kita kerjakan dapat membutuhkan/memiliki package dan dependencies yang berbeda-beda.
 
 ## Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment. Namun, hal tersebut tidak disarankan dan bukan merupakan best practice. Beberapa alasannya antara lain:
@@ -165,4 +165,26 @@ Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual 
 Dengan demikian, pembuatan aplikasi web berbasis Django akan lebih baik dilakukan dengan menggunakan virtual environment.
 <br>
 
-# MVC, MVT, MVMM
+# MVC, MVT, MVMM, dan Perbedaan Ketiganya
+## MVC
+MVC atau Model-View-Controller adalah sebuah pola desain arsitektur dalam sistem pengembangan aplikasi yang memisahkan kode menjadi tiga bagian:
+- Model: Bertanggung jawab untuk mengelola data dan menyediakan akses ke data. Model bertugas mengatur, mengelola, dan berhubungan langsung dengan database.
+- View: Menyajikan tampilan informasi kepada pengguna. View bertanggung jawab untuk merender data yang diberikan oleh model ke dalam format yang sesuai untuk ditampilkan.
+- Controller: Merupakan perantara antara Model dan View. Controller menerima input dari setiap proses request user melalui View, memprosesnya, dan berinteraksi dengan model yang sesuai. Controller juga dapat mengirim perintah ke View untuk memperbarui tampilan ketika ada perubahan dalam Model. Controller memegang kendali logika aplikasi.
+
+## MVT
+MVT atau Model-View-Template merupakan sebuah arsitektur yang umumnya digunakan dalam pengembangan aplikasi web dengan menggunakan framework Django.
+- Model: Bertanggung jawab untuk mengelola data dan menyediakan akses ke data. Model bertugas mengatur, mengelola, dan berhubungan langsung dengan database.
+- View: Menyajikan tampilan informasi kepada pengguna. View bertanggung jawab untuk merender data yang diberikan oleh model ke dalam format yang sesuai untuk ditampilkan.
+- Template: Mengatur tampilan halaman web menggunakan file HTML berdasarkan hasil response dari view untuk ditampilkan kepada user.
+
+## MVVM
+MVVM atau Model-View-ViewModel adalah arsitektur pengembangan aplikasi web yang membagi kode menjadi 3 bagian:
+- Model: Bertanggung jawab untuk mengelola data dan menyediakan akses ke data. Model bertugas mengatur, mengelola, dan berhubungan langsung dengan database.
+- View: Menampilkan informasi kepada pengguna berupa tampilan.
+- ViewModel: ViewModel bertindak sebagai penghubung antara Model dan View. MVMM juga menerapkan konsep data binding, dimana ViewModel dapat mengetahui perubahan yang terjadi di Model sehingga tampilan akan otomatis diperbarui ketika terdapat pembaruan.
+
+## Perbedaan Ketiganya
+| MVC   | MVT   | MVVM|
+| ---   | ---   | --- | 
+| Controller berperan penting dalam mengelola dan mengatur informasi antara Model dan View   | Template bertugas untuk mengatur tampilan halaman web menggunakan file HTML berdasarkan hasil response dari view untuk ditampilkan kepada user.    | ViewModel bertindak sebagai penghubung antara Model dan View. MVVM juga menerapkan konsep data binding agar tampilan akan otomatis diperbarui ketika terdapat pembaruan. |
