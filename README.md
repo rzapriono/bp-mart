@@ -121,7 +121,7 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
 6. Gunakan versi Python 3.10
 7. Pada bagian Start Command masukkan perintah python `manage.py migrate && gunicorn shopping_list.wsgi`
 8. Masukkan `bp-mart` sebagai nama aplikasi yang juga akan menjadi nama domain
-9. Centang bagian `HTTP Listener on PORT` dan klik `Deploy` App untuk memulai proses deployment aplikasi
+9. Centang bagian `HTTP Listener on PORT` dan klik `Deploy App` untuk memulai proses deployment aplikasi
 
 <br>
 
