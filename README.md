@@ -21,7 +21,7 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
 > Perhatikan bahwa terdapat karakter "." di akhir command
 
 ## Membuat aplikasi dengan nama main
-1. Buka command prompt dan masuk ke direktori proyek `bp-mart`, kemudian aktifkan virtual environment
+1. Buka command prompt dan masuk ke direktori proyek `bp_mart`, kemudian aktifkan virtual environment
 2. Buat aplikasi baru bernama `main` dengan command `python manage.py startapp main`
 3. Daftarkan aplikasi `main` ke `settings.py` dalam direktori shopping list dengan cara menambahkan `main` ke variabel `INSTALLED_APPS`
    ```python
@@ -32,27 +32,15 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
    ]
    ```
    
-## Melakukan routing pada proyek bp-mart agar dapat menjalankan aplikasi main
-1. Buat file `urls.py` di dalam direktori `main`
-2. Isi `urls.py` dengan kode berikut
-   ```python
-   from django.urls import path
-   from main.views import show_main
-   
-   app_name = 'main'
-   
-   urlpatterns = [
-       path('', show_main, name='show_main'),
-   ]
-   ```
-3. Buka file `urls.py` di dalam direktori proyek `bp-mart`
-4. Impor fungsi `include` dari `django.urls.`
+## Melakukan routing pada proyek bp_mart agar dapat menjalankan aplikasi main
+1. Buka file `urls.py` di dalam direktori proyek `bp_mart`
+2. Impor fungsi `include` dari `django.urls.`
    ```python
    ...
    from django.urls import path, include
    ...
    ```
-6. Tambahkan rute URL seperti berikut untuk mengarahkan ke tampilan `main` di dalam variabel `urlpatterns`
+3. Tambahkan rute URL seperti berikut untuk mengarahkan ke tampilan `main` di dalam variabel `urlpatterns`
    ```python
    urlpatterns = [
       ...
@@ -102,37 +90,27 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
    Variabel context berisi data nama aplikasi, nama, dan kelas yang akan ditampilkan pada templates `main.html`
 3. Isi `main.html` untuk menampilkan data-data tersebut
    ```html
-   <h1>Stok Produk bp-mart</h1>
+   <h1>Stok Produk {{app_name}}</h1>
 
    <h5>Name: </h5>
-   <p>{{ creator_name }}</p> <!-- Ubahlah sesuai dengan nama kamu -->
+   <p>{{ name }}</p>
    <h5>Class: </h5>
-   <p>{{ class }}</p> <!-- Ubahlah sesuai dengan kelas kamu -->
-   
-   <table border="1">
-       <th>No</th>
-       <th>Nama Produk</th>
-       <th>Jumlah</th>
-       <th>Harga</th>
-       <th>Deskripsi</th>
-       <!-- <th>Tanggal Masuk</th> -->
-       <th>Tempat Beli</th>
-
-       <tr>
-           <td>1</td>
-           <td> {{ name }} </td>
-           <td> {{ amount }} </td>
-           <td> Rp{{ price }} </td>
-           <td> {{ description }} </td>
-           <!-- <td> {{ date_added }} </td> -->
-           <td> {{ purchased_from }} </td>
-       </tr>
-   </table>
-
+   <p>{{ class }}</p>
    ```
    
 ## Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
-
+1. Buat file `urls.py` di dalam direktori `main`
+2. Isi `urls.py` dengan kode berikut
+   ```python
+   from django.urls import path
+   from main.views import show_main
+   
+   app_name = 'main'
+   
+   urlpatterns = [
+       path('', show_main, name='show_main'),
+   ]
+   ```
 
 ## Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat
 1. Login ke [Adaptable.io](https://adaptable.io/) dengan menggunakan akun GitHub yang digunakan untuk membuat proyek `bp_mart`
