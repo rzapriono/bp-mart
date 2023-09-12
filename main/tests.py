@@ -9,3 +9,9 @@ class mainTest(TestCase):
     def test_main_using_main_template(self):
         response = Client().get('/main/')
         self.assertTemplateUsed(response, 'main.html')
+
+    def test_item_details(self): # check if item details are shown correctly in main.html
+        response = Client().get('/main/')
+        self.assertContains(response, 'bp-mart')
+        self.assertContains(response, 'Reza Apriono') 
+        self.assertContains(response, 'PBP D') 
