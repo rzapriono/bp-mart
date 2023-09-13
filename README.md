@@ -158,6 +158,7 @@ Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual 
 - Kesulitan migrasi jika ingin memindahkan proyek ke lingkungan pengembangan yang berbeda
 
 Dengan demikian, pembuatan aplikasi web berbasis Django akan lebih baik dilakukan dengan menggunakan virtual environment.
+
 <br>
 
 # MVC, MVT, MVMM, dan Perbedaan Ketiganya
