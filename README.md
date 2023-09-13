@@ -126,7 +126,7 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
 <br>
 
 # Bagan Request Client ke Web Aplikasi Berbasis Django Beserta Responnya
-[bagan](https://drive.google.com/drive/folders/1AuEUTEkezQvFtXynR72Up_egT1lZP46r?usp=sharing)
+[bagan](https://drive.google.com/file/d/14AcrbWz7xHT_M6uTrASrci8RRe6IAzVJ/view?usp=sharing)
 1. Saat terdapat HTTP request, `urls.py` akan melakukan routing dengan mencocokkan url pattern yang sesuai dengan request yang diterima
 2. Jika url pattern ditemukan, `urls.py` akan memanggil function dalam `views.py` yang sesuai dengan request tersebut
 3. `views.py` akan mengecek dan mengakses data yang dibutuhkan untuk ditampilkan dari `models.py`
