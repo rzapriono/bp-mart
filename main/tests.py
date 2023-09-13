@@ -10,7 +10,7 @@ class mainTest(TestCase):
         response = Client().get('/main/')
         self.assertTemplateUsed(response, 'main.html')
 
-    def test_item_details(self):
+    def test_main_html_details(self):
         response = Client().get('/main/')
         self.assertContains(response, 'bp-mart')
         self.assertContains(response, 'Reza Apriono') 
