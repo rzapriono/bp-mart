@@ -115,7 +115,7 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
 ## Membuat Testing Tambahan (Bonus)
 Pada tugas ini, saya membuat 1 unit test selain dari 2 unit test yang telah diajarkan di tutorial
 ```python
-def test_item_details(self):
+def test_main_html_details(self):
         response = Client().get('/main/')
         self.assertContains(response, 'bp-mart')
         self.assertContains(response, 'Reza Apriono') 
@@ -137,6 +137,7 @@ tes tersebut bertujuan untuk mengecek tampilan `main.html` sudah sesuai dengan c
 <br>
 
 # Bagan Request Client ke Web Aplikasi Berbasis Django Beserta Responnya
+![MVT Django drawio](https://github.com/rzapriono/bp-mart/assets/107228573/dfd1f7b6-c0b7-4242-9209-59d421d20693)
 1. Saat terdapat HTTP request, `urls.py` akan melakukan routing dengan mencocokkan url pattern yang sesuai dengan request yang diterima
 2. Jika url pattern ditemukan, `urls.py` akan memanggil function dalam `views.py` yang sesuai dengan request tersebut
 3. `views.py` akan mengecek dan mengakses data yang dibutuhkan untuk ditampilkan dari `models.py`
