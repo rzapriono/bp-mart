@@ -112,6 +112,17 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
    ]
    ```
 
+## Membuat Testing Tambahan (Bonus)
+Pada tugas ini, saya membuat 1 unit test selain dari 2 unit test yang telah diajarkan di tutorial
+```python
+def test_item_details(self):
+        response = Client().get('/main/')
+        self.assertContains(response, 'bp-mart')
+        self.assertContains(response, 'Reza Apriono') 
+        self.assertContains(response, 'PBP D') 
+```
+tes tersebut bertujuan untuk mengecek tampilan `main.html` sudah sesuai dengan context pada `views.py`
+
 ## Melakukan deployment ke Adaptable terhadap aplikasi yang sudah dibuat
 1. Login ke [Adaptable.io](https://adaptable.io/) dengan menggunakan akun GitHub yang digunakan untuk membuat proyek `bp_mart`
 2. Setelah login, tekan tombol `New App` dan pilih `Connect an Existing Repository`
@@ -126,7 +137,6 @@ Aplikasi Adaptable yang sudah di-deploy dapat dilihat di link [bp-mart](https://
 <br>
 
 # Bagan Request Client ke Web Aplikasi Berbasis Django Beserta Responnya
-![BAGAN!](https://drive.google.com/file/d/14AcrbWz7xHT_M6uTrASrci8RRe6IAzVJ/view?usp=sharing)
 1. Saat terdapat HTTP request, `urls.py` akan melakukan routing dengan mencocokkan url pattern yang sesuai dengan request yang diterima
 2. Jika url pattern ditemukan, `urls.py` akan memanggil function dalam `views.py` yang sesuai dengan request tersebut
 3. `views.py` akan mengecek dan mengakses data yang dibutuhkan untuk ditampilkan dari `models.py`
