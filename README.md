@@ -161,7 +161,7 @@ Dengan demikian, pembuatan aplikasi web berbasis Django akan lebih baik dilakuka
 
 <br>
 
-# MVC, MVT, MVMM, dan Perbedaan Ketiganya
+# MVC, MVT, MVVM, dan Perbedaan Ketiganya
 ## MVC
 MVC atau Model-View-Controller adalah sebuah pola desain arsitektur dalam sistem pengembangan aplikasi yang memisahkan kode menjadi tiga bagian:
 - Model: Bertanggung jawab untuk mengelola data dan menyediakan akses ke data. Model bertugas mengatur, mengelola, dan berhubungan langsung dengan database.
@@ -178,9 +178,9 @@ MVT atau Model-View-Template merupakan sebuah arsitektur yang umumnya digunakan 
 MVVM atau Model-View-ViewModel adalah arsitektur pengembangan aplikasi web yang membagi kode menjadi 3 bagian:
 - Model: Bertanggung jawab untuk mengelola data dan menyediakan akses ke data. Model bertugas mengatur, mengelola, dan berhubungan langsung dengan database.
 - View: Menampilkan informasi kepada pengguna berupa tampilan.
-- ViewModel: ViewModel bertindak sebagai penghubung antara Model dan View. MVMM juga menerapkan konsep data binding, dimana ViewModel dapat mengetahui perubahan yang terjadi di Model sehingga tampilan akan otomatis diperbarui ketika terdapat pembaruan.
+- ViewModel: ViewModel bertindak sebagai penghubung antara Model dan View. MVVM juga menerapkan konsep data binding, dimana ViewModel dapat mengetahui perubahan yang terjadi di Model sehingga tampilan akan otomatis diperbarui ketika terdapat pembaruan.
 
 ## Perbedaan Ketiganya
 | MVC   | MVT   | MVVM|
 | ---   | ---   | --- | 
-| Controller berperan penting dalam mengelola dan mengatur informasi antara Model dan View   | Template bertugas untuk mengatur tampilan halaman web menggunakan file HTML berdasarkan hasil response dari view untuk ditampilkan kepada user.    | ViewModel bertindak sebagai penghubung antara Model dan View. MVVM juga menerapkan konsep data binding agar tampilan akan otomatis diperbarui ketika terdapat pembaruan. |
+| Controller berperan penting dalam mengelola dan mengatur informasi antara Model dan View.   | Template bertugas untuk mengatur tampilan halaman web menggunakan file HTML berdasarkan hasil response dari view untuk ditampilkan kepada user.    | ViewModel bertindak sebagai penghubung antara Model dan View. MVVM juga menerapkan konsep data binding, dimana ViewModel dapat mengetahui perubahan yang terjadi di Model sehingga tampilan akan otomatis diperbarui ketika terdapat pembaruan. |
