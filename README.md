@@ -137,8 +137,6 @@ tes tersebut bertujuan untuk mengecek tampilan `main.html` sudah sesuai dengan c
 8. Masukkan `bp-mart` sebagai nama aplikasi yang juga akan menjadi nama domain
 9. Centang bagian `HTTP Listener on PORT` dan klik `Deploy App` untuk memulai proses deployment aplikasi
 
-<br>
-
 ## Bagan Request Client ke Web Aplikasi Berbasis Django Beserta Responnya
 ![MVT Django drawio](https://github.com/rzapriono/bp-mart/assets/107228573/dfd1f7b6-c0b7-4242-9209-59d421d20693)
 1. Saat terdapat HTTP request, `urls.py` akan melakukan routing dengan mencocokkan url pattern yang sesuai dengan request yang diterima
@@ -146,8 +144,6 @@ tes tersebut bertujuan untuk mengecek tampilan `main.html` sudah sesuai dengan c
 3. `views.py` akan mengecek dan mengakses data yang dibutuhkan untuk ditampilkan dari `models.py`
 4. Proses mengolah data dilakukan oleh `models.py` yang berhubungan langsung dengan database
 5. `views.py` akan merender tampilan halaman web menggunakan `template` dalam bentuk html dan kemudian mengirimkannya sebagai HTTP response
-
-<br>
 
 ## Virtual Environment
 ### Mengapa menggunakan virtual environment?
@@ -161,8 +157,6 @@ Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual 
 - Kesulitan migrasi jika ingin memindahkan proyek ke lingkungan pengembangan yang berbeda
 
 Dengan demikian, pembuatan aplikasi web berbasis Django akan lebih baik dilakukan dengan menggunakan virtual environment.
-
-<br>
 
 ## MVC, MVT, MVVM, dan Perbedaan Ketiganya
 ### MVC
@@ -188,7 +182,6 @@ MVVM atau Model-View-ViewModel adalah arsitektur pengembangan aplikasi web yang 
 | ---   | ---   | --- | 
 | Controller berperan penting dalam mengelola dan mengatur informasi antara Model dan View.   | Template bertugas untuk mengatur tampilan halaman web menggunakan file HTML berdasarkan hasil response dari view untuk ditampilkan kepada user.    | ViewModel bertindak sebagai penghubung antara Model dan View. MVVM juga menerapkan konsep data binding, dimana ViewModel dapat mengetahui perubahan yang terjadi di Model sehingga tampilan akan otomatis diperbarui ketika terdapat pembaruan. |
 
-<br>
 <br>
 
 # Tugas 3
@@ -498,11 +491,18 @@ Dengan format pasangan key dan value, JSON dapat menyimpan data dalam bentuk arr
 
 ## Hasil akses URL menggunakan Postman untuk Melihat Data
 ### HTML
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/0bd6c851-8da7-4c15-8b16-41567a77f82f">
+
 
 ### XML
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/943f10a8-d7b4-4ead-8c95-36410633abd0">
 
 ### JSON
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/1a58b0ce-52f9-4b49-9ce8-1d05b5006377">
 
 ### XML by ID
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/db4110a1-95d7-4bea-8284-04254e6134c6">
+
 
 ### JSON by ID
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/105c9927-9dd2-4d93-846c-794f3400f7f2">
