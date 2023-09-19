@@ -451,7 +451,7 @@ Kode tersebut bertujuan untuk menghitung banyak item yang berada di QuerySet `it
 <p>Kamu menyimpan {{ items_count }} item pada aplikasi ini </p>
 ...
 ```
-Setelah selesai, banyak item yang tersimpan di database sudah dapat dilihat di halaman web /main, tepatnya di atas tabel data.
+Setelah selesai, banyak item yang tersimpan di database sudah dapat dilihat di halaman web, tepatnya di atas tabel data.
 
 ## Perbedaan antara form `POST` dan form `GET` dalam Django
 | POST   | GET   |
