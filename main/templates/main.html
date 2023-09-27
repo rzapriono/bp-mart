@@ -31,16 +31,45 @@
                 <td>{{item.price}}</td>
                 <td>{{item.date_added}}</td>
                 <td>{{item.purchased_from}}</td>
+                <td>
+                    <form method="post" action="{% url 'main:add_amount' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Add</button>
+                    </form>
+                </td>
+                <td> 
+                    <form method="post" action="{% url 'main:reduce_amount' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Reduce</button>
+                    </form>
+                </td>
+                <td> 
+                    <form method="post" action="{% url 'main:delete_item' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                </td>
             </tr>
         {% endfor %}
     </table>
     
     <br />
+
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+
+    <br>
     
     <a href="{% url 'main:create_item' %}">
         <button>
             Add New Item
         </button>
     </a>
-    
+
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Logout
+        </button>
+    </a>
+   
 {% endblock content %}
