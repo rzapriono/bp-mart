@@ -757,9 +757,13 @@ class ItemForm(ModelForm):
 6. Simpan semua perubahan dan lakukan migrasi model dengan command `python manage.py makemigrations`, kemudian aplikasikan migrasi dengan command `python manage.py migrate`.
 
 ### Membuat Dua akun Pengguna dengan Masing-Masing Tiga Dummy Data
+Mendaftarkan 2 akun user menggunakan form register dengan username dan passwordnya masing-masing, kemudian login ke tiap akun dan menambahkan 3 dummy data dengan menekan tombol Add New Item dan memasukkan detail item.
 - user01
+![image](https://github.com/rzapriono/bp-mart/assets/107228573/92629c46-e25d-4fc6-a977-07f74c2eec54)
 
 - user02
+![image](https://github.com/rzapriono/bp-mart/assets/107228573/30dbaee2-af08-4027-95d6-7c68bc4cfef0)
+
 
 ## __Bonus__
 ### Tombol dan Fungsi untuk Menambahkan `amount` Suatu Objek
