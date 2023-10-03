@@ -1,34 +1,37 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block meta %}
     <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 {% endblock meta %}
 
 {% block content %}  
+<body>
+    <div class = "login template d-flex justify-content-center align-items-center 100-w 100-vh bg-rgb">
+        <div class="form_container p-5 rounded">
+            <h1>Register</h1>
+            <form method="POST" >  
+                {% csrf_token %}  
+                <table>  
+                    {{ form.as_table }}  
+                    <tr>  
+                        <td></td>
+                        <td><input class="btn btn-primary" type="submit" name="submit" value="Daftar"/></td>  
+                    </tr>  
+                </table>  
+            </form>
+            
+            <div class="failed-login">
+                {% if messages %}   
+                    {% for message in messages %}  
+                        {{ message }}
+                    {% endfor %}  
+                {% endif %}
+            </div>
 
-<div class = "login">
-    
-    <h1>Register</h1>  
-
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
-
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
-
-</div>  
+    </div>
+</body>
 
 {% endblock content %}

@@ -1,45 +1,49 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block meta %}
     <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock meta %}
 
 {% block content %}
-
-<div class = "login">
-
-    <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
+<body>
+    <div class = "login template d-flex justify-content-center align-items-center 100-w 100-vh bg-rgb">
+        <div class="form_container p-5 rounded">
+            <h1>Login</h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="input-login">
+                    <label for="text">Username</label>
+                    <input type="text" name="username" placeholder="Enter Username" class="form-control">
+                </div>
+                
+                <div class="input-login">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Enter Password" class="form-control">
+                </div>
+    
+                <div class="button-login">
+                    <input class="btn btn-primary" type="submit" value="Login">
+                </div>
+            </form>
+            
+            <div class="failed-login">
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}     
+            </div>
+              
+        <p>Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+    
+        </div>
         
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+    </div>
 
-</div>
+</body>
+
 
 {% endblock content %}

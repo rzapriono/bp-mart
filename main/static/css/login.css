@@ -1,0 +1,32 @@
+*{
+    color: white;
+}
+
+.form_container{
+    width: 30%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+}
+
+.login.template {
+    height: 100vh;
+}
+
+.bg-rgb{
+    background-image: url('../images/bp-mart.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;;
+}
+
+.failed-login{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn{
+    margin-top: 10px;
+    background-color: blue;
+}

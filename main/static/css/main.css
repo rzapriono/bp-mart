@@ -1,8 +1,13 @@
-body {
-    background-color: bisque;
+.main {
+    margin: 20px;
 }
 
-th {
-    font-style: italic;
-    color: red;
+.card.custom-card {
+    background-color:lightslategray;
+    color: white;
+}
+
+.last-item .card-body {
+    background-color: darkslateblue;
+    color:white;
 }

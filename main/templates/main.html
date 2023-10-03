@@ -2,97 +2,83 @@
 
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block meta %}
+    <title>bp-mart stock</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock meta %}
 
 {% block content %}
-    <nav class="navbar navbar-custom">
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Welcome, {{ name }}!</span>
-            <a href="{% url 'main:logout' %}">
-                <button>
-                    Logout
-                </button>
-            </a>
-            
+            <span class="navbar-brand m-2 h1 text-white">Welcome, {{ name }}!</span>
+            <a href="{% url 'main:logout' %}" class="btn btn-secondary">Logout</a>
         </div>
     </nav>
 
-    <h1>Stok Produk bp-mart</h1>
-
-    <h5>Name:</h5>
-    <p>{{name}}</p>
-
-    <h5>Class:</h5>
-    <p>{{class}}</p>
-
-    <p>Kamu menyimpan {{ items_count }} item pada aplikasi ini </p>
-
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Date Added</th>
-            <th>Purchased From</th>
-        </tr>
+    <div class="main"> 
+        <h1>Stok Produk bp-mart</h1>
     
-        {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
+        <!-- <h5>Name:</h5>
+        <p>{{name}}</p>
     
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.date_added}}</td>
-                <td>{{item.purchased_from}}</td>
-                <td>
-                    <form method="post" action="{% url 'main:add_amount' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-info">Add</button>
-                    </form>
-                </td>
-                <td> 
-                    <form method="post" action="{% url 'main:reduce_amount' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-info">Reduce</button>
-                    </form>
-                </td>
-                <td>
-                    <a href="{% url 'main:edit_item' item.pk %}">
-                        <button class="btn btn-warning">
-                            Edit
-                        </button>
-                    </a>
-                </td>
-                <td> 
-                    <form method="post" action="{% url 'main:delete_item' item.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+        <h5>Class:</h5>
+        <p>{{class}}</p> -->
     
-    <br />
-
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-
-    <br>
+        <p>Kamu menyimpan {{ items_count }} item pada aplikasi ini</p>
     
-    <a href="{% url 'main:create_item' %}">
-        <button>
-            Add New Item
-        </button>
-    </a>
-
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-   
+        <div class="row">
+            {% for item in items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card custom-card d-flex flex-column {% if forloop.last %}last-item{% endif %}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">
+                                <strong>Amount:</strong> {{ item.amount }}<br>
+                                <strong>Description:</strong> {{ item.description }}<br>
+                                <strong>Price:</strong> {{ item.price }}<br>
+                                <strong>Date Added:</strong> {{ item.date_added }}<br>
+                                <strong>Purchased From:</strong> {{ item.purchased_from }}<br>
+                            </p>
+    
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                
+                                <form method="post" action="{% url 'main:add_amount' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-info mr-2">Add</button>
+                                </form>
+                                
+                                <form method="post" action="{% url 'main:reduce_amount' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-info mr-2">Reduce</button>
+                                </form>
+    
+                                <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-warning mr-2">Edit</a>
+    
+                                <form method="post" action="{% url 'main:delete_item' item.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                                </form>
+    
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+        <br />
+    
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
+    
+        <br>
+    
+        <a href="{% url 'main:create_item' %}" class="btn btn-primary">Add New Item</a>
+        <a href="{% url 'main:logout' %}" class="btn btn-secondary">Logout</a>
+    
+    </div>
+    
+</body>
+    
 {% endblock content %}

@@ -872,16 +872,517 @@ Secara umum penggunaan cookies aman apabila dilakukan dan dikelola secara benar 
 ## Implementasi Checklist Tugas 5
 ### Kustomisasi Halaman 
 #### Halaman Login
+Kustomisasi halaman `login` menggunakan css yang berada di file `login.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
+1. Menggunakan login template dari bootstrap
+2. Membuat container untuk form login
+3. Menggunakan css untuk melakukan kustomisasi terhadap container dan menambahkan background berupa gambar 
+```html
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <div class = "login template d-flex justify-content-center align-items-center 100-w 100-vh bg-rgb">
+        <div class="form_container p-5 rounded">
+            <h1>Login</h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="input-login">
+                    <label for="text">Username</label>
+                    <input type="text" name="username" placeholder="Enter Username" class="form-control">
+                </div>
+                
+                <div class="input-login">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Enter Password" class="form-control">
+                </div>
+    
+                <div class="button-login">
+                    <input class="btn btn-primary" type="submit" value="Login">
+                </div>
+            </form>
+            
+            <div class="failed-login">
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}     
+            </div>
+              
+        <p>Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
+    
+        </div>
+        
+    </div>
+
+</body>
+
+
+{% endblock content %}
+```
+
+```css
+*{
+    color: white;
+}
+
+.form_container{
+    width: 30%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+}
+
+.login.template {
+    height: 100vh;
+}
+
+.bg-rgb{
+    background-image: url('../images/bp-mart.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;;
+}
+
+.failed-login{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn{
+    margin-top: 10px;
+    background-color: blue;
+}
+
+```
+
 #### Halaman Register
+Kustomisasi halaman `register` menggunakan css, yang berada di file `register.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
+1. Menggunakan template dari bootstrap seperti pada halaman login
+2. Membuat container untuk form register
+3. Menggunakan css untuk melakukan kustomisasi terhadap container dan menambahkan background berupa gambar
+```html
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock meta %}
+
+{% block content %}  
+<body>
+    <div class = "login template d-flex justify-content-center align-items-center 100-w 100-vh bg-rgb">
+        <div class="form_container p-5 rounded">
+            <h1>Register</h1>
+            <form method="POST" >  
+                {% csrf_token %}  
+                <table>  
+                    {{ form.as_table }}  
+                    <tr>  
+                        <td></td>
+                        <td><input class="btn btn-primary" type="submit" name="submit" value="Daftar"/></td>  
+                    </tr>  
+                </table>  
+            </form>
+            
+            <div class="failed-login">
+                {% if messages %}   
+                    {% for message in messages %}  
+                        {{ message }}
+                    {% endfor %}  
+                {% endif %}
+            </div>
+
+    </div>
+</body>
+
+{% endblock content %}
+```
+
+```css
+*{
+    color: white;
+}
+
+.form_container{
+    width: 30%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+}
+
+.login.template {
+    height: 100vh;
+}
+
+.bg-rgb{
+    background-image: url('../images/bp-mart.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;;
+}
+
+.btn{
+    margin-top: 10px;
+    background-color: blue;
+}
+
+table {
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 100px;
+}
+
+td, th {
+    text-align: left;
+    vertical-align: top;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    color: black;
+}
+
+ul li {
+    color:white;
+    margin-top: 10px;
+}
+```
+
 #### Halaman Tambah Inventori
+Kustomisasi halaman `create_item` menggunakan css, yang berada di file `create_item.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
+1. Menggunakan template dari bootstrap untuk membuat container
+```html
+{% extends 'base.html' %} 
+
+{% load static %}
+
+{% block meta %}
+<title>Create Item</title>
+<link rel="stylesheet" href="{% static 'css/create_item.css' %}">
+{% endblock meta %}
+
+{% block content %}
+<body>
+    <div class = "login template d-flex justify-content-center align-items-center 100-w 100-vh bg-rgb">
+        <div class="form_container p-5 rounded">
+            <h1>Add New Item</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Add Item"/>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+                
+            </form>
+            
+        </div>
+        
+    </div>
+
+</body>
+
+{% endblock %}
+```
+
+2. Kustomisasi container dan form menggunakan css
+```css
+/* create_item.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+td {
+    padding: 5px;
+    text-align: left;
+}
+
+input[type="text"], input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #0071fc;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0061d6;
+}
+
+.header-title {
+    margin-left: 10px;
+}
+```
+
+### Halaman Daftar Inventori
+Kustomisasi halaman `main` menggunakan css, yang berada di file `main.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
+1. Menambahkan navbar menggunakan bootstrap
+```html
+<nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container-fluid">
+            <span class="navbar-brand m-2 h1 text-white">Welcome, {{ name }}!</span>
+            <a href="{% url 'main:logout' %}" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
+```
+
+2. Menampilkan item dalam bentuk card menggunakan bootstrap dan mengatur warna serta marginnya menggunakan css
+```html
+<div class="row">
+            {% for item in items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card custom-card d-flex flex-column {% if forloop.last %}last-item{% endif %}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">
+                                <strong>Amount:</strong> {{ item.amount }}<br>
+                                <strong>Description:</strong> {{ item.description }}<br>
+                                <strong>Price:</strong> {{ item.price }}<br>
+                                <strong>Date Added:</strong> {{ item.date_added }}<br>
+                                <strong>Purchased From:</strong> {{ item.purchased_from }}<br>
+                            </p>
+    
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                
+                                <form method="post" action="{% url 'main:add_amount' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-info mr-2">Add</button>
+                                </form>
+                                
+                                <form method="post" action="{% url 'main:reduce_amount' item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-info mr-2">Reduce</button>
+                                </form>
+    
+                                <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-warning mr-2">Edit</a>
+    
+                                <form method="post" action="{% url 'main:delete_item' item.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                                </form>
+    
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+```
+
+```css
+.main {
+    margin: 20px;
+}
+
+.card.custom-card {
+    background-color:lightslategray;
+    color: white;
+}
+```
+
+### __Bonus__: Memberikan warna yang berbeda (teks atau background) pada baris terakhir dari item pada inventori menggunakan CSS.
+Saya memberikan warna yang berbeda pada teks dan background pada card terakhir dari item dengan menggunakan logic pada html untuk mengecek apakah looping item sudah sampai item terakhir, dan kemudian diberikan style pada css untuk item terakhir tersebut.
+```html
+...
+<div class="row">
+            {% for item in items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card custom-card d-flex flex-column {% if forloop.last %}last-item{% endif %}">
+                        <div class="card-body">
+...
+```
+
+```css
+.last-item .card-body {
+    background-color: darkslateblue;
+    color:white;
+}
+```
 
 ##  Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+## Universal Selector (*)
+Universal selector berguna untuk memilih semua elemen di dalam dokumen HTML. Cocok digunakan untuk memberikan style umum pada semua elemen dalam dokumen.
+
+### Element Selector / Type Selector
+Element Selector dapat digunakan untuk mengubah properti untuk semua elemen yang memiliki tag HTML yang sama. Cocok digunakan untuk memberikan style khusus pada satu jenis elemen di halaman web, seperti mengubah warna teks pada semua elemen `<p>`.
+
+### ID Selector (#)
+ID selector menggunakan ID pada tag sebagai selector-nya. ID bersifat unik dalam satu halaman web. ID dapat ditambahkan pada halaman template HTML. Cocok untuk elemen-elemen spesifik yang memerlukan style khusus. Digunakan jika hanya ada satu elemen dengan ID tertentu di halaman.
+
+### Class Selector (.)
+Class Selector memungkinkan kita untuk mengelompokkan elemen dengan karakteristik yang sama dan mengubah propertinya. Cocok digunakan untuk memberikan style yang sama pada beberapa elemen yang berbeda jenis, dengan mengelompokkan elemen berdsarkan atribut class yang sama dan memberikan style secara konsisten.
+
+### Child Selector (>)
+Descendant selector berguna untuk memilih child element langsung dari elemen tertentu. Cocok digunakan ketika ingin memilih elemen yang langsung berada di elemen lain, misalnya, memilih semua elemen `<li>` yang berada dalam sebuah `<ul>`.
 
 ## Jelaskan HTML5 Tag yang kamu ketahui.
+- Heading `<h1> - <h6>`
+
+Mendefinisikan heading. Urutan prioritas kepentingan tag dimulai dari `<h1>` hingga `<h6>`. Heading sebaiknya digunakan secara berurutan tanpa melewatkan suatu levelnya (misal tidak jump dari h1 ke h3)
+```html
+<h1>heading 1</h1>
+<h2>heading 2</h2>
+<h3>heading 3</h3>
+<h4>heading 4</h4>
+<h5>heading 5</h5>
+<h6>heading 6</h6>
+```
+- Paragraph `<p>`
+
+Mendefinisikan sebuah paragraf. Browser otomatis menambahkan sebuah blank line sebelum dan sesudah tag `<p>`.
+```html
+<p> Ini adalah paragraf. </p>
+```
+
+- Table `<table>`
+
+Mendefinisikan sebuah HTML table. HTML table terdiri dari elemen `<table>` dan satu atau lebih table row `<tr>`, table header `<th>`, dan table data `<td>`.
+```html
+<table>
+  <tr>
+    <th>Bulan</th>
+    <th>Tabungan</th>
+  </tr>
+  <tr>
+    <td>Januari</td>
+    <td>Rp3.000.000</td>
+  </tr>
+</table>
+```
+
+- Hyperlink `<a>`
+
+Mendefinisikan sebuah hyperlink yang digunakan untuk menghubungkan suatu halaman ke halaman lain. Attribute yang paling penting dari `<a>` adalah `href`, yang merupakan destinasi linknya.
+```html
+<a href="https://pbp-fasilkom-ui.github.io/ganjil-2024/">Belajar bersama pakbepe</a>
+```
+
+- Ordered List `<ol>`
+
+Mendefinisikan list terurut (ordered). BIsa berbentuk numerical atau alphabetical. Gunakan `<li>` untuk mendefinisikan item dari ordered list yang dibuat.
+```html
+<ol>
+  <li>Dani Pedrosa</li>
+  <li>Marc Marquez</li>
+</ol>
+```
+
+- Unordered List `<ul>`
+
+Mendefinisikan list tak terurut (unordered / bulleted). Gunakan `<ul>` dan `<li>` secara bersamaan untuk membuat unordered list.
+```html
+<ul>
+  <li>Dani Pedrosa</li>
+  <li>Marc Marquez</li>
+</ul>
+```
+
+- List item `<li>`
+
+Mendefinisikan list item. Tag ini digunakan di dalam `<ol>` (sebagai angka atau huruf) dan `<ul>` (sebagai bullet points).
+
+- Button `<button>`
+
+Mendefinisikan button yang dapat diklik. Didalam tag `<button>` dapat diberikan text dan beberapa tag lain seperti `<img>`, `<br>`, dll. Button memiliki attribute `type` untuk memberikan info kepada browser terkait jenis button tersebut.
+```html
+<button type="button">Klik saya!</button>
+```
+
+- `<div>`
+
+Tag `<div>` mendefinisikan division atau section pada suatu file HTML dan digunakan sebagai container untuk elemen HTML yang nantinya bisa dilakukan styling menggunakan CSS atau dimanipulasi menggunakan JavaScript.
+```html
+<div class="myDiv">
+  <h2>Heading di dalam div.</h2>
+  <p>Paragraf di dalam div.</p>
+</div>
+```
+
+- Form `<form>`
+
+Digunakan untuk membuat form HTML untuk input user. Tag `<form>` dapat mengandung satu atau lebih element `<input>`, `<textarea>`, `<button>`, `<select>`, `<option>`, `<optgroup>`, `<fieldset>`, `<label>`, dan `<output>`.
+```html
+<form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Username: </td>
+                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+            </tr>
+        <table>
+<form>
+```
 
 ## Jelaskan perbedaan antara margin dan padding.
+- Padding 
+
+Padding adalah ruang di sekitar konten dalam sebuah elemen. Mengatur padding pada suatu elemen sebenarnya berarti menambahkan ruang antara batas elemen tersebut dan kontennya. Padding mempengaruhi ukuran elemen dari dalam, tetapi tidak mempengaruhi ukuran elemen secara keseluruhan di halaman. Padding mengosongkan area di sekitar konten (transparan).
+
+- Margin
+
+Margin adalah ruang di sekitar elemen yang memisahkannya dari elemen-elemen lain di halaman. Mengatur margin pada suatu elemen berarti menambahkan ruang di luar batas elemen tersebut. Margin mempengaruhi ukuran elemen dari luar dan dapat memengaruhi posisi elemen terhadap elemen-elemen lain di halaman. Margin mengosongkan area di sekitar border (transparan).
 
 ## Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+Perbedaan antara framework CSS Tailwind dan Bootstrap:
 |Tailwind| Bootstrap|
 |---|---|
 |Tailwind CSS membangun tampilan dengan menggabungkan kelas-kelas utilitas yang telah didefinisikan sebelumnya.| Bootstrap menggunakan gaya dan komponen yang telah didefinisikan, yang memiliki tampilan yang sudah jadi dan dapat digunakan secara langsung.
@@ -889,3 +1390,4 @@ Secara umum penggunaan cookies aman apabila dilakukan dan dikelola secara benar 
 |Tailwind CSS memiliki memberikan fleksibilitas dan adaptabilitas tinggi terhadap proyek|Bootstrap sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
 |Tailwind CSS memiliki pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia dan bagaimana menggabungkannya untuk mencapai tampilan yang diinginkan.|Bootstrap memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan.|
 
+Bootstrap lebih cocok untuk digunakan ketika kita ingin membangun sebuah web dengan solusi siap pakai dan konsisten yang mencakup sebagian besar skenario web design agar dapat menghemat waktu. Sementara itu, tailwind lebih cocok digunakan ketika kita ingin framework yang lebih fleksibel untuk melakukan design web dan jika kita ingin kustomisasi yang detail untuk setiap aspek design web.
