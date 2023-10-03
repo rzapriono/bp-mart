@@ -516,6 +516,9 @@ Dengan format pasangan key dan value, JSON dapat menyimpan data dalam bentuk arr
 <br>
 </details>
 
+<details>
+<summary>Tugas 4</summary>
+
 # Tugas 4
 <hr>
 
@@ -861,3 +864,28 @@ Django menggunakan cookies sebagai bagian dari session management system dalam m
 
 ## Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
 Secara umum penggunaan cookies aman apabila dilakukan dan dikelola secara benar dengan memperhatikan security yang tepat. Meskipun aman, tetap ada potensi resiko kemanan yang perlu diwaspadai, antara lain keamanan data cookies yang terancam dengan Cookie Hijacking atau Man-in-the-Middle Attack, serangan Cross-Site Scripting (XSS) yang dapat menyisipkan kode berbahaya ke cookies, serangan Cross-Site Request Forgery (CSRF), dan privasi dari Third-Pary cookies yang digunakan tanpa sepengetahuan user.
+
+<br>
+</details>
+
+# Tugas 5
+## Implementasi Checklist Tugas 5
+### Kustomisasi Halaman 
+#### Halaman Login
+#### Halaman Register
+#### Halaman Tambah Inventori
+
+##  Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+## Jelaskan HTML5 Tag yang kamu ketahui.
+
+## Jelaskan perbedaan antara margin dan padding.
+
+## Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+|Tailwind| Bootstrap|
+|---|---|
+|Tailwind CSS membangun tampilan dengan menggabungkan kelas-kelas utilitas yang telah didefinisikan sebelumnya.| Bootstrap menggunakan gaya dan komponen yang telah didefinisikan, yang memiliki tampilan yang sudah jadi dan dapat digunakan secara langsung.
+|Tailwind CSS memiliki file CSS yang lebih kecil sedikit dibandingkan Bootstrap dan hanya akan memuat kelas-kelas utilitas yang ada.|Bootstrap memiliki file CSS yang lebih besar dibandingkan dengan Tailwind CSS karena termasuk banyak komponen yang telah didefinisikan.
+|Tailwind CSS memiliki memberikan fleksibilitas dan adaptabilitas tinggi terhadap proyek|Bootstrap sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
+|Tailwind CSS memiliki pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia dan bagaimana menggabungkannya untuk mencapai tampilan yang diinginkan.|Bootstrap memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan.|
+

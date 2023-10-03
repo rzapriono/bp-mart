@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
 {% block content %}
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Welcome, {{ name }}!</span>
+            <a href="{% url 'main:logout' %}">
+                <button>
+                    Logout
+                </button>
+            </a>
+            
+        </div>
+    </nav>
+
     <h1>Stok Produk bp-mart</h1>
 
     <h5>Name:</h5>
@@ -34,19 +50,26 @@
                 <td>
                     <form method="post" action="{% url 'main:add_amount' item.id %}">
                         {% csrf_token %}
-                        <button type="submit">Add</button>
+                        <button type="submit" class="btn btn-info">Add</button>
                     </form>
                 </td>
                 <td> 
                     <form method="post" action="{% url 'main:reduce_amount' item.id %}">
                         {% csrf_token %}
-                        <button type="submit">Reduce</button>
+                        <button type="submit" class="btn btn-info">Reduce</button>
                     </form>
+                </td>
+                <td>
+                    <a href="{% url 'main:edit_item' item.pk %}">
+                        <button class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>
                 </td>
                 <td> 
                     <form method="post" action="{% url 'main:delete_item' item.id %}">
                         {% csrf_token %}
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
                 </td>
