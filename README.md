@@ -872,6 +872,10 @@ Secara umum penggunaan cookies aman apabila dilakukan dan dikelola secara benar 
 ## Implementasi Checklist Tugas 5
 ### Kustomisasi Halaman 
 #### Halaman Login
+
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/cbce19f0-8e7e-40d3-8c84-c79e1313c68a">
+
+
 Kustomisasi halaman `login` menggunakan css yang berada di file `login.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
 1. Menggunakan login template dari bootstrap
 2. Membuat container untuk form login
@@ -965,6 +969,10 @@ Kustomisasi halaman `login` menggunakan css yang berada di file `login.css` pada
 ```
 
 #### Halaman Register
+
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/63d8df5c-cb88-4ac1-8894-9760177d2d39">
+
+
 Kustomisasi halaman `register` menggunakan css, yang berada di file `register.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
 1. Menggunakan template dari bootstrap seperti pada halaman login
 2. Membuat container untuk form register
@@ -1069,6 +1077,10 @@ ul li {
 ```
 
 #### Halaman Tambah Inventori
+
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/e65bd9f2-1556-42a0-824a-448977062203">
+
+
 Kustomisasi halaman `create_item` menggunakan css, yang berada di file `create_item.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
 1. Menggunakan template dari bootstrap untuk membuat container
 ```html
@@ -1174,6 +1186,10 @@ input[type="submit"]:hover {
 ```
 
 ### Halaman Daftar Inventori
+
+<img width="1280" alt="image" src="https://github.com/rzapriono/bp-mart/assets/107228573/1b868458-01d7-4750-8d46-490a98574505">
+
+
 Kustomisasi halaman `main` menggunakan css, yang berada di file `main.css` pada direktori `main/static/css` dan juga menggunakan bootstrap.
 1. Menambahkan navbar menggunakan bootstrap
 ```html
