@@ -4,13 +4,14 @@ from django.http import HttpResponseRedirect
 from main.forms import ItemForm
 from django.urls import reverse
 from main.models import Item
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.core import serializers
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -112,10 +113,10 @@ def delete_item(request, id):
     return HttpResponseRedirect(reverse('main:show_main')) 
 
 def edit_item(request, id):
-    # Get product berdasarkan ID
+    # Get item berdasarkan ID
     item = Item.objects.get(pk = id)
 
-    # Set product sebagai instance dari form
+    # Set item sebagai instance dari form
     form = ItemForm(request.POST or None, instance=item)
 
     if form.is_valid() and request.method == "POST":
@@ -125,3 +126,52 @@ def edit_item(request, id):
 
     context = {'form': form}
     return render(request, "edit_item.html", context)
+
+def get_item_json(request):
+    items = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', items))
+
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        purchased_from = request.POST.get("purchased_from")
+        user = request.user
+
+        new_item = Item(name=name, price=price, amount=amount, description=description, purchased_from=purchased_from, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def add_amount_ajax(request, id):
+    if request.method == 'POST':
+        item = Item.objects.get(pk=id)
+        item.amount += 1
+        item.save()
+        return HttpResponse(b"ADDED", status=201)
+    
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def reduce_amount_ajax(request, id):
+    if request.method == 'POST':
+        item = Item.objects.get(pk=id)
+        if item.amount > 0:
+            item.amount -= 1
+            item.save()
+            return HttpResponse(b"REDUCED", status=201)
+
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_item_ajax(request, id):
+    if request.method == 'DELETE':
+        Item.objects.get(pk=id).delete()
+        return HttpResponse(b"DELETED", status=201)
+    return HttpResponseNotFound()

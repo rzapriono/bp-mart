@@ -28,57 +28,144 @@
     
         <p>Kamu menyimpan {{ items_count }} item pada aplikasi ini</p>
     
-        <div class="row">
-            {% for item in items %}
-                <div class="col-md-4 mb-4">
-                    <div class="card custom-card d-flex flex-column {% if forloop.last %}last-item{% endif %}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item.name }}</h5>
-                            <p class="card-text">
-                                <strong>Amount:</strong> {{ item.amount }}<br>
-                                <strong>Description:</strong> {{ item.description }}<br>
-                                <strong>Price:</strong> {{ item.price }}<br>
-                                <strong>Date Added:</strong> {{ item.date_added }}<br>
-                                <strong>Purchased From:</strong> {{ item.purchased_from }}<br>
-                            </p>
+        <div id="items" class="row"></div>
     
-                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                
-                                <form method="post" action="{% url 'main:add_amount' item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-info mr-2">Add</button>
-                                </form>
-                                
-                                <form method="post" action="{% url 'main:reduce_amount' item.id %}">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-info mr-2">Reduce</button>
-                                </form>
-    
-                                <a href="{% url 'main:edit_item' item.pk %}" class="btn btn-warning mr-2">Edit</a>
-    
-                                <form method="post" action="{% url 'main:delete_item' item.id %}" class="d-inline">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger mr-2">Delete</button>
-                                </form>
-    
-                              </div>
-                        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form" onsubmit="return false;">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="col-form-label">Price:</label>
+                                <input type="number" class="form-control" id="price" name="price"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="amount" class="col-form-label">Amount:</label>
+                                <input type="number" class="form-control" id="amount" name="amount"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="purchased_from" class="col-form-label">Purchased from:</label>
+                                <input type="text" class="form-control" id="purchased_from" name="purchased_from"></input>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
         </div>
-    
-        <br />
     
         <h5>Sesi terakhir login: {{ last_login }}</h5>
     
         <br>
     
-        <a href="{% url 'main:create_item' %}" class="btn btn-primary">Add New Item</a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
         <a href="{% url 'main:logout' %}" class="btn btn-secondary">Logout</a>
     
     </div>
     
 </body>
-    
+
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+
+    async function refreshItems() {
+        document.getElementById("items").innerHTML = "";
+        const items = await getItems();
+        let htmlString = "";
+        items.forEach((item) => {
+            htmlString += `
+            <div class="col-md-4 mb-4">
+                <div class="card custom-card d-flex flex-column">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.fields.name}</h5>
+                        <p class="card-text">
+                            <strong>Price:</strong> ${item.fields.price}<br>
+                            <strong>Amount:</strong> ${item.fields.amount}<br>
+                            <strong>Description:</strong> ${item.fields.description}<br>
+                            <strong>Date Added:</strong> ${item.fields.date_added}<br>
+                            <strong>Purchased From:</strong> ${item.fields.purchased_from}<br>
+                        </p>
+                        
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button onclick="addAmount(${item.pk})" class="btn btn-info mr-2">Add</button>
+                            <button onclick="reduceAmount(${item.pk})" class="btn btn-info mr-2">Reduce</button>
+                            <button onclick="editItem(${item.pk})" class="btn btn-warning mr-2">Edit</button>
+                            <button onclick="deleteItem(${item.pk})" class="btn btn-danger mr-2">Delete</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>`
+        })
+
+        document.getElementById("items").innerHTML = htmlString;
+    }
+
+    refreshItems()
+
+    function addItem() {
+        fetch("{% url 'main:add_item_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItems)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addItem
+
+    async function addAmount(id) {
+        let url = "{% url 'main:add_amount_ajax' '12345' %}";
+        url = url.replace('12345', id);
+        const response = await fetch(url, {
+        method: "POST",
+        });
+        if (response.ok) {
+            refreshItems();
+        }
+    }
+
+    async function reduceAmount(id) {
+        let url = "{% url 'main:reduce_amount_ajax' '12345' %}";
+        url = url.replace('12345', id);
+        const response = await fetch(url, {
+        method: "POST",
+        });
+        if (response.ok) {
+            refreshItems();
+        }
+    }
+
+    async function deleteItem(id) {
+        let url = "{% url 'main:delete_item_ajax' '12345' %}";
+        url = url.replace('12345', id);
+        const response = await fetch(url, {
+            method: "DELETE",
+        });
+        if (response.ok) {
+            refreshItems();
+        }
+    }
+
+</script>
+
 {% endblock content %}
