@@ -1,4 +1,4 @@
-Web dari tugas ini dapat dilihat di link [bp-mart](https://bp-mart.adaptable.app/main/)
+Web dari tugas ini dapat dilihat di link [bp-mart](http://reza-apriono-tutorial.pbp.cs.ui.ac.id./login/?next=/)
 
 # Arsip Tugas
 <details>
