@@ -1,4 +1,4 @@
-Web dari tugas ini dapat dilihat di link [bp-mart](http://reza-apriono-tutorial.pbp.cs.ui.ac.id./login/?next=/)
+Web dari tugas ini dapat dilihat di link [bp-mart](https://reza-apriono-tugas.pbp.cs.ui.ac.id/)
 
 # Arsip Tugas
 <details>
