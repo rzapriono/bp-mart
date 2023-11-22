@@ -73,7 +73,3 @@ def register(request):
         "status": True,
         "message": "Registrasi berhasil!"
     }, status=201)
-
-def get_item_json(request):
-    item = Item.objects.filter(user = user)
-    return HttpResponse(serializers.serialize('json', item))

@@ -128,6 +128,7 @@ def edit_item(request, id):
     context = {'form': form}
     return render(request, "edit_item.html", context)
 
+@csrf_exempt
 def get_item_json(request):
     items = Item.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', items))
